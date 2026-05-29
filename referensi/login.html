@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Login - BSI Tabungan Haji</title>
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Tailwind Theme Config -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#e4e2e1",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#ffdeaa",
+                        "secondary-fixed-dim": "#ffba2c",
+                        "primary-fixed": "#a0f4ca",
+                        "surface-container": "#f0eded",
+                        "surface-container-high": "#eae8e7",
+                        "outline-variant": "#bec9c1",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-tertiary-container": "#d1d1d1",
+                        "surface-variant": "#e4e2e1",
+                        "inverse-on-surface": "#f3f0f0",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f6f3f2",
+                        "primary-fixed-dim": "#84d7af",
+                        "primary": "#004d34",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#0b6c4b",
+                        "on-secondary-fixed-variant": "#5f4100",
+                        "on-primary-fixed": "#002114",
+                        "surface": "#fbf9f8",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#6f7a72",
+                        "surface-bright": "#fbf9f8",
+                        "on-surface": "#1b1c1c",
+                        "background": "#fbf9f8",
+                        "on-secondary-fixed": "#271900",
+                        "on-primary-fixed-variant": "#005137",
+                        "primary-container": "#006747",
+                        "on-surface-variant": "#3f4943",
+                        "inverse-primary": "#84d7af",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#6b4b00",
+                        "tertiary": "#414343",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "tertiary-container": "#585a5a",
+                        "surface-dim": "#dcd9d9",
+                        "secondary-container": "#feb71a",
+                        "secondary": "#7d5700",
+                        "inverse-surface": "#303030",
+                        "on-primary-container": "#8fe2ba",
+                        "on-background": "#1b1c1c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1200px",
+                        "sm": "12px",
+                        "base": "8px",
+                        "md": "16px",
+                        "gutter": "24px",
+                        "lg": "24px",
+                        "xl": "32px",
+                        "xxl": "48px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "label-sm": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-xl": ["40px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+        /* Floating Label Custom Styles */
+        .floating-input:focus~.floating-label,
+        .floating-input:not(:placeholder-shown)~.floating-label {
+            transform: translateY(-130%) scale(0.85);
+            background-color: theme('colors.surface-container-lowest');
+            padding: 0 4px;
+            color: theme('colors.primary');
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background text-on-background font-body-md antialiased min-h-screen flex selection:bg-primary selection:text-on-primary">
+    <!-- Split Layout Container -->
+    <div class="flex w-full min-h-screen">
+        <!-- Left Pane: Branding & Hero (Hidden on Mobile) -->
+        <div class="hidden md:flex flex-col relative w-1/2 bg-primary overflow-hidden">
+            <!-- Background Image with Overlay -->
+            <div class="absolute inset-0 bg-primary z-0">
+                <img alt="" class="w-full h-full object-cover opacity-30 mix-blend-multiply"
+                    data-alt="A sophisticated architectural photograph of modern Islamic geometric patterns integrated into a sleek, corporate building facade. The image is bathed in soft, natural light, emphasizing clean lines and pristine white marble against deep emerald green accents. The aesthetic is extremely professional, minimalist, and serene, perfectly embodying a trustworthy, modern Islamic banking environment. The composition is expansive, allowing ample negative space for text overlays."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYSvrOy7xXvl8SzYr-r7sSYRmLiPxH17jqmwThgSe6qc1m3CnTdvEQcI4QufJSdkUOLNgX7I-DS1vOcCW1ZZ4fJR20Xzyn7_9qX7HVtyX5jTSIwJzRPZj-Y6InksxwxklJjKP51CiFPGioUduK3NdhTUtScOKuZUARTDaDDyRmcFOZGWkreKYs6xEbWoE1G5UY7E6GRfNqZByWGvxx8CL-dqbpKxQIf0ONUVFTvZ85oSwFFOHeD8_uabqph43DbdyGRK8VrDv9yhc7" />
+                <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/80 to-transparent"></div>
+            </div>
+            <!-- Content -->
+            <div class="relative z-10 flex flex-col justify-end h-full p-xxl pb-[10%]">
+                <div
+                    class="w-16 h-16 bg-surface-container-lowest rounded-xl flex items-center justify-center mb-xl shadow-lg">
+                    <span class="material-symbols-outlined text-primary text-4xl" data-weight="fill"
+                        style="font-variation-settings: 'FILL' 1;">mosque</span>
+                </div>
+                <h1 class="font-headline-xl text-headline-xl text-on-primary mb-md max-w-lg">
+                    Wujudkan Niat Suci Anda
+                </h1>
+                <p class="font-body-lg text-body-lg text-on-primary/90 max-w-md">
+                    Langkah awal perjalanan ibadah Haji Anda dimulai di sini. Nikmati kemudahan dan keberkahan mengelola
+                    dana bersama Bank Syariah Indonesia.
+                </p>
+            </div>
+        </div>
+        <!-- Right Pane: Login Form -->
+        <div
+            class="flex flex-col justify-center items-center w-full md:w-1/2 bg-surface-container-lowest p-lg sm:p-xxl relative">
+            <div class="w-full max-w-[400px]">
+                <!-- Mobile Logo (Visible only on small screens) -->
+                <div class="md:hidden flex items-center gap-sm mb-xl">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <span class="material-symbols-outlined text-on-primary" data-weight="fill"
+                            style="font-variation-settings: 'FILL' 1;">mosque</span>
+                    </div>
+                    <span class="font-headline-md text-headline-md font-bold text-primary">BSI Mobile</span>
+                </div>
+                <!-- Header -->
+                <div class="mb-xl">
+                    <h2
+                        class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-xs">
+                        Selamat Datang
+                    </h2>
+                    <p class="font-body-md text-body-md text-on-surface-variant">
+                        Silakan masuk untuk mengelola Tabungan Haji Anda.
+                    </p>
+                </div>
+                <!-- Form -->
+                <form action="#" class="space-y-lg" method="POST" onsubmit="event.preventDefault();">
+                    <!-- Email Input -->
+                    <div class="relative">
+                        <input
+                            class="floating-input w-full px-md py-sm h-[56px] bg-transparent border border-outline-variant rounded-lg text-on-surface font-body-md focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors peer placeholder-transparent"
+                            id="email" name="email" placeholder="Email Anda" required="" type="email" />
+                        <label
+                            class="floating-label absolute left-md top-1/2 -translate-y-1/2 font-body-md text-body-md text-on-surface-variant transition-all duration-200 pointer-events-none peer-focus:text-primary"
+                            for="email">
+                            Alamat Email
+                        </label>
+                        <span
+                            class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 text-outline-variant pointer-events-none">mail</span>
+                    </div>
+                    <!-- Password Input -->
+                    <div class="relative">
+                        <input
+                            class="floating-input w-full px-md py-sm h-[56px] bg-transparent border border-outline-variant rounded-lg text-on-surface font-body-md focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors peer placeholder-transparent"
+                            id="password" name="password" placeholder="Kata Sandi" required="" type="password" />
+                        <label
+                            class="floating-label absolute left-md top-1/2 -translate-y-1/2 font-body-md text-body-md text-on-surface-variant transition-all duration-200 pointer-events-none peer-focus:text-primary"
+                            for="password">
+                            Kata Sandi
+                        </label>
+                        <button
+                            class="absolute right-md top-1/2 -translate-y-1/2 text-outline-variant hover:text-primary transition-colors focus:outline-none"
+                            type="button">
+                            <span class="material-symbols-outlined">visibility_off</span>
+                        </button>
+                    </div>
+                    <!-- Forgot Password Link -->
+                    <div class="flex justify-end mt-sm mb-lg">
+                        <a class="font-label-sm text-label-sm text-primary hover:text-primary-container transition-colors"
+                            href="#">
+                            Lupa Kata Sandi?
+                        </a>
+                    </div>
+                    <!-- Submit Button -->
+                    <button
+                        class="w-full h-[48px] bg-primary text-on-primary font-label-md text-label-md rounded-lg shadow-sm hover:translate-y-[-2px] hover:shadow-md transition-all duration-200 flex items-center justify-center gap-sm"
+                        type="submit">
+                        <span>Masuk</span>
+                        <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                    </button>
+                </form>
+                <!-- Registration Link -->
+                <div class="mt-xl text-center">
+                    <p class="font-body-sm text-body-sm text-on-surface-variant">
+                        Belum punya rekening Tabungan Haji?
+                        <a class="font-label-md text-label-md text-primary hover:text-primary-container ml-xs transition-colors"
+                            href="#">Daftar Sekarang</a>
+                    </p>
+                </div>
+            </div>
+            <!-- API Status Indicator (Footer) -->
+            <div
+                class="absolute bottom-lg left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-lg flex items-center gap-xs bg-surface py-xs px-sm rounded-full border border-surface-container-high shadow-sm">
+                <span class="relative flex h-2.5 w-2.5">
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-fixed-dim opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#0b6c4b]"></span>
+                </span>
+                <span class="font-label-sm text-label-sm text-on-surface-variant ml-xs">Sistem Online</span>
+            </div>
+        </div>
+    </div>
+    <!-- Simple JS for password toggle interaction -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const togglePasswordBtn = document.querySelector('button[type="button"]');
+            const passwordInput = document.getElementById('password');
+            const icon = togglePasswordBtn.querySelector('.material-symbols-outlined');
+
+            togglePasswordBtn.addEventListener('click', function () {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                icon.textContent = type === 'password' ? 'visibility_off' : 'visibility';
+            });
+        });
+    </script>
+</body>
+
+</html>
