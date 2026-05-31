@@ -89,7 +89,7 @@ export default function RegisterPage() {
       />
 
       {/* Main Registration Container */}
-      <main className="w-full max-w-md z-10 relative">
+      <main className="w-full max-w-[28rem] z-10 relative">
         <div
           className="rounded-xl p-xl flex flex-col gap-lg border border-white/20"
           style={{

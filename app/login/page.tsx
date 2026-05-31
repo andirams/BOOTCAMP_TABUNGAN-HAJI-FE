@@ -73,10 +73,10 @@ export default function LoginPage() {
               mosque
             </span>
           </div>
-          <h1 className="font-headline-xl text-headline-xl text-on-primary mb-md max-w-lg">
+          <h1 className="font-headline-xl text-headline-xl text-on-primary mb-md max-w-[32rem]">
             Wujudkan Niat Suci Anda
           </h1>
-          <p className="font-body-lg text-body-lg text-on-primary/90 max-w-md">
+          <p className="font-body-lg text-body-lg text-on-primary/90 max-w-[28rem]">
             Langkah awal perjalanan ibadah Haji Anda dimulai di sini. Nikmati kemudahan dan
             keberkahan mengelola dana bersama Bank Syariah Indonesia.
           </p>

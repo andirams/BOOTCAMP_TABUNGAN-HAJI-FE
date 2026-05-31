@@ -136,7 +136,7 @@ export default function DashboardPage() {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center gap-md bg-surface p-gutter text-center">
         <span className="material-symbols-outlined text-error text-5xl">error</span>
-        <p className="font-body-md text-body-md text-on-surface-variant max-w-md">{error}</p>
+        <p className="font-body-md text-body-md text-on-surface-variant max-w-[28rem]">{error}</p>
         <div className="flex gap-sm">
           <button
             onClick={load}

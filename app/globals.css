@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* File desain referensi (referensi/*.html) bukan bagian aplikasi. Jangan di-scan
+   Tailwind: class di sana (mis. max-w-md) bisa memunculkan utility "hantu" yang
+   bentrok dengan named spacing token di @theme dan menghasilkan CSS yang salah. */
+@source not "../referensi";
+
 /*
  * Design tokens ported from referensi/login.html (Tailwind v3 CDN config)
  * to Tailwind v4 `@theme`. BSI Tabungan Haji — Material 3 inspired palette.
