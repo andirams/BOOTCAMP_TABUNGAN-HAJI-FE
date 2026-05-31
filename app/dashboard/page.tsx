@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
   getMe,
@@ -384,6 +385,13 @@ export default function DashboardPage() {
                     </span>
                     <h3 className="font-label-md text-label-md">Estimasi Keberangkatan Haji</h3>
                   </div>
+                  <Link
+                    href="/estimasi"
+                    className="font-label-sm text-label-sm text-on-secondary-fixed-variant hover:underline flex items-center gap-xs"
+                  >
+                    Lihat Detail
+                    <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                  </Link>
                 </div>
                 <div className="p-md">
                   <EstimasiContent estimasi={estimasi} adaRekening={me.tabungan.length > 0} />

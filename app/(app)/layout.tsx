@@ -10,6 +10,7 @@ const NAV = [
   { href: "/dashboard", match: "/dashboard", icon: "home", label: "Beranda" },
   { href: "/rekening", match: "/rekening", icon: "account_balance_wallet", label: "Rekening" },
   { href: "/transaksi/setor", match: "/transaksi", icon: "swap_horiz", label: "Transaksi" },
+  { href: "/estimasi", match: "/estimasi", icon: "mosque", label: "Estimasi" },
   { href: "/laporan", match: "/laporan", icon: "description", label: "Laporan" },
 ];
 
@@ -20,6 +21,7 @@ function deriveTitle(pathname: string): string {
   if (pathname.startsWith("/rekening")) return "Rekening";
   if (pathname.startsWith("/transaksi/setor")) return "Setor Dana";
   if (pathname.startsWith("/transaksi/tarik")) return "Tarik Dana";
+  if (pathname.startsWith("/estimasi")) return "Estimasi Keberangkatan";
   if (pathname.startsWith("/laporan")) return "Laporan Transaksi";
   if (pathname.startsWith("/profil")) return "Pengaturan Profil";
   return "BSI Mobile";
