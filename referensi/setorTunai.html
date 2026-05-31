@@ -1,0 +1,424 @@
+<!doctype html>
+
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Setoran - BSI Mobile</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-fixed": "#ffdeaa",
+              surface: "#fbf9f8",
+              "tertiary-fixed": "#e2e2e2",
+              "surface-container-low": "#f6f3f2",
+              "on-surface-variant": "#3f4943",
+              "error-container": "#ffdad6",
+              "tertiary-container": "#585a5a",
+              background: "#fbf9f8",
+              "secondary-container": "#feb71a",
+              "on-surface": "#1b1c1c",
+              "surface-container-highest": "#e4e2e1",
+              "primary-fixed": "#a0f4ca",
+              "on-tertiary-fixed": "#1a1c1c",
+              "on-primary-fixed": "#002114",
+              "on-error": "#ffffff",
+              "on-error-container": "#93000a",
+              "on-secondary-container": "#6b4b00",
+              "on-tertiary": "#ffffff",
+              "surface-dim": "#dcd9d9",
+              "on-primary-fixed-variant": "#005137",
+              tertiary: "#414343",
+              "on-secondary-fixed": "#271900",
+              outline: "#6f7a72",
+              "primary-fixed-dim": "#84d7af",
+              "on-primary": "#ffffff",
+              "inverse-surface": "#303030",
+              "surface-container": "#f0eded",
+              "surface-bright": "#fbf9f8",
+              "inverse-primary": "#84d7af",
+              "on-primary-container": "#8fe2ba",
+              "surface-variant": "#e4e2e1",
+              "surface-container-high": "#eae8e7",
+              secondary: "#7d5700",
+              "on-secondary": "#ffffff",
+              "secondary-fixed-dim": "#ffba2c",
+              "on-secondary-fixed-variant": "#5f4100",
+              "surface-tint": "#0b6c4b",
+              "on-tertiary-fixed-variant": "#454747",
+              "inverse-on-surface": "#f3f0f0",
+              "primary-container": "#006747",
+              "on-tertiary-container": "#d1d1d1",
+              "tertiary-fixed-dim": "#c6c6c7",
+              "surface-container-lowest": "#ffffff",
+              "outline-variant": "#bec9c1",
+              "on-background": "#1b1c1c",
+              error: "#ba1a1a",
+              primary: "#004d34",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              xxl: "48px",
+              xs: "4px",
+              "container-max": "1200px",
+              md: "16px",
+              gutter: "24px",
+              xl: "32px",
+              sm: "12px",
+              lg: "24px",
+              base: "8px",
+            },
+            fontFamily: {
+              "label-sm": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Plus Jakarta Sans"],
+              "headline-lg": ["Plus Jakarta Sans"],
+              "headline-xl": ["Plus Jakarta Sans"],
+              "body-lg": ["Plus Jakarta Sans"],
+              "headline-md": ["Plus Jakarta Sans"],
+              "body-sm": ["Plus Jakarta Sans"],
+              "label-md": ["Plus Jakarta Sans"],
+              "body-md": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "label-sm": ["12px", { lineHeight: "16px", fontWeight: "500" }],
+              "headline-lg-mobile": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "700" },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "40px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-xl": [
+                "40px",
+                {
+                  lineHeight: "52px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+              "headline-md": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+              "body-sm": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+              "label-md": ["14px", { lineHeight: "20px", fontWeight: "600" }],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      /* Hide scrollbar for cleaner modal look */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      /* Custom radio button styling */
+      .payment-radio:checked + div {
+        border-color: #006747; /* primary-container */
+        background-color: rgba(0, 103, 71, 0.05); /* very light primary */
+      }
+      .payment-radio:checked + div .payment-icon {
+        color: #006747;
+        font-variation-settings: "FILL" 1;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-surface text-on-surface antialiased h-screen w-screen overflow-hidden relative font-body-md"
+  >
+    <!-- Background Context (Dashboard Placeholder) -->
+    <div class="absolute inset-0 z-0">
+      <img
+        class="w-full h-full object-cover filter blur-[2px] opacity-40"
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCenvtyJA9872gvmQxiZO1K3onsyuf0hRRn8tBKYvSTvU6WFd3szhqYHUMx0bppA7UtKU5jKWk1vm3Ob_d8csUxtD_aX4rYgwzrIV0ucSrgoHjyUjx6tJyNpblnn6zfiP0Ua-3xH7fRoRpLkPZxNKQ_bZU4IRm9F4-3kuBuO1KbO36qh4n7QCDG0y5Fbrh5IgZ1gf4E11C_gfi2XjBb5xJbhBL_-D-YwA-Uf3Bg_9KtcSD9ryalEhEED67GlOjs96XFswkN3mR-Y08C"
+      />
+      <div
+        class="absolute inset-0 bg-inverse-surface/60 backdrop-blur-sm"
+      ></div>
+    </div>
+    <!-- Modal Overlay Container -->
+    <div
+      class="relative z-10 w-full h-full flex items-center justify-center p-md md:p-gutter"
+    >
+      <!-- Modal Card -->
+      <div
+        class="bg-surface rounded-xl shadow-[0_8px_24px_rgba(27,28,28,0.15)] w-full max-w-[520px] flex flex-col max-h-[921px] animate-[scale-in_0.2s_ease-out]"
+      >
+        <!-- Header -->
+        <div
+          class="flex items-center justify-between px-lg py-md border-b border-surface-variant"
+        >
+          <h2 class="font-headline-md text-headline-md text-on-surface">
+            Setoran
+          </h2>
+          <button
+            aria-label="Tutup"
+            class="p-xs rounded-full hover:bg-surface-container-high transition-colors text-on-surface-variant"
+          >
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <!-- Body (Scrollable) -->
+        <div
+          class="flex-1 overflow-y-auto no-scrollbar p-lg flex flex-col gap-xl"
+        >
+          <!-- Destination Account (Pre-filled) -->
+          <div class="flex flex-col gap-sm">
+            <label class="font-label-md text-label-md text-on-surface-variant"
+              >Rekening Tujuan</label
+            >
+            <div
+              class="flex items-center gap-md p-md bg-surface-container-low border border-outline-variant rounded-lg relative overflow-hidden"
+            >
+              <!-- Decorative left border for active state -->
+              <div
+                class="absolute left-0 top-0 bottom-0 w-[4px] bg-primary-container"
+              ></div>
+              <div
+                class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary-container shrink-0"
+              >
+                <span
+                  class="material-symbols-outlined"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >account_balance_wallet</span
+                >
+              </div>
+              <div class="flex flex-col flex-1">
+                <span class="font-label-md text-label-md text-on-surface"
+                  >Tabungan Haji - Ahmad Fauzi</span
+                >
+                <span
+                  class="font-body-sm text-body-sm text-on-surface-variant mt-xs"
+                  >7123 4567 8900</span
+                >
+              </div>
+              <span class="material-symbols-outlined text-outline-variant"
+                >check_circle</span
+              >
+            </div>
+          </div>
+          <!-- Nominal Input -->
+          <div class="flex flex-col gap-sm">
+            <label
+              class="font-label-md text-label-md text-on-surface-variant"
+              for="nominal"
+              >Nominal Setoran</label
+            >
+            <div class="relative flex items-center">
+              <span
+                class="absolute left-md font-headline-md text-headline-md text-on-surface-variant pointer-events-none"
+                >Rp</span
+              >
+              <input
+                class="w-full pl-[56px] pr-md py-md bg-surface border border-outline rounded-lg font-headline-md text-headline-md text-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all placeholder:text-outline-variant/50"
+                id="nominal"
+                inputmode="numeric"
+                placeholder="0"
+                type="text"
+              />
+            </div>
+            <div class="flex gap-sm mt-xs flex-wrap">
+              <button
+                class="px-sm py-xs border border-outline-variant rounded-full font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-low transition-colors"
+              >
+                +100 Rb
+              </button>
+              <button
+                class="px-sm py-xs border border-outline-variant rounded-full font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-low transition-colors"
+              >
+                +500 Rb
+              </button>
+              <button
+                class="px-sm py-xs border border-outline-variant rounded-full font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-low transition-colors"
+              >
+                +1 Jt
+              </button>
+            </div>
+          </div>
+          <!-- Payment Method Selection -->
+          <div class="flex flex-col gap-sm">
+            <label class="font-label-md text-label-md text-on-surface-variant"
+              >Metode Pembayaran</label
+            >
+            <div class="grid grid-cols-2 gap-md">
+              <!-- Option 1: Tunai -->
+              <label class="cursor-pointer group relative">
+                <input
+                  class="peer sr-only payment-radio"
+                  name="payment_method"
+                  type="radio"
+                  value="tunai"
+                />
+                <div
+                  class="flex flex-col items-center justify-center p-md border border-outline-variant rounded-lg gap-sm group-hover:border-outline transition-colors h-full"
+                >
+                  <span
+                    class="material-symbols-outlined text-[32px] text-on-surface-variant payment-icon transition-colors"
+                    >payments</span
+                  >
+                  <span
+                    class="font-label-md text-label-md text-on-surface text-center"
+                    >Tunai</span
+                  >
+                </div>
+              </label>
+              <!-- Option 2: Transfer -->
+              <label class="cursor-pointer group relative">
+                <input
+                  class="peer sr-only payment-radio"
+                  name="payment_method"
+                  type="radio"
+                  value="transfer"
+                />
+                <div
+                  class="flex flex-col items-center justify-center p-md border border-outline-variant rounded-lg gap-sm group-hover:border-outline transition-colors h-full"
+                >
+                  <span
+                    class="material-symbols-outlined text-[32px] text-on-surface-variant payment-icon transition-colors"
+                    >sync_alt</span
+                  >
+                  <span
+                    class="font-label-md text-label-md text-on-surface text-center"
+                    >Transfer</span
+                  >
+                </div>
+              </label>
+              <!-- Option 3: Virtual Account -->
+              <label class="cursor-pointer group relative">
+                <input
+                  class="peer sr-only payment-radio"
+                  name="payment_method"
+                  type="radio"
+                  value="va"
+                />
+                <div
+                  class="flex flex-col items-center justify-center p-md border border-outline-variant rounded-lg gap-sm group-hover:border-outline transition-colors h-full"
+                >
+                  <span
+                    class="material-symbols-outlined text-[32px] text-on-surface-variant payment-icon transition-colors"
+                    >account_balance</span
+                  >
+                  <span
+                    class="font-label-md text-label-md text-on-surface text-center"
+                    >Virtual Account</span
+                  >
+                </div>
+              </label>
+              <!-- Option 4: QRIS (Pre-selected to show note) -->
+              <label class="cursor-pointer group relative">
+                <input
+                  checked=""
+                  class="peer sr-only payment-radio"
+                  name="payment_method"
+                  type="radio"
+                  value="qris"
+                />
+                <div
+                  class="flex flex-col items-center justify-center p-md border border-outline-variant rounded-lg gap-sm group-hover:border-outline transition-colors h-full"
+                >
+                  <span
+                    class="material-symbols-outlined text-[32px] text-on-surface-variant payment-icon transition-colors"
+                    >qr_code_scanner</span
+                  >
+                  <span
+                    class="font-label-md text-label-md text-on-surface text-center"
+                    >QRIS</span
+                  >
+                </div>
+              </label>
+            </div>
+          </div>
+          <!-- Contextual Note (Visible for QRIS) -->
+          <div
+            class="flex items-start gap-sm p-md bg-secondary-container/10 border border-secondary-container/20 rounded-lg"
+          >
+            <span
+              class="material-symbols-outlined text-secondary font-medium"
+              style="font-variation-settings: &quot;FILL&quot; 1"
+              >info</span
+            >
+            <p
+              class="font-body-sm text-body-sm text-on-surface-variant pt-[2px]"
+            >
+              Setoran QRIS minimal Rp 100.000. Pastikan aplikasi pembayaran Anda
+              mendukung fitur QRIS antar bank.
+            </p>
+          </div>
+        </div>
+        <!-- Footer Actions -->
+        <div
+          class="px-lg py-md border-t border-surface-variant flex items-center justify-end gap-md bg-surface-container-lowest rounded-b-xl"
+        >
+          <button
+            class="font-label-md text-label-md text-primary-container px-lg py-sm rounded-full hover:bg-primary/5 transition-colors focus:ring-2 focus:ring-primary focus:outline-none"
+          >
+            Batal
+          </button>
+          <button
+            class="font-label-md text-label-md text-on-primary bg-primary-container px-xl py-sm rounded-full shadow-sm hover:bg-primary transition-colors focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none flex items-center gap-xs"
+          >
+            Konfirmasi Setoran
+            <span class="material-symbols-outlined text-[18px]"
+              >arrow_forward</span
+            >
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Basic JS for nominal input formatting (Optional, adds polish) -->
+    <script>
+      const nominalInput = document.getElementById("nominal");
+
+      nominalInput.addEventListener("input", function (e) {
+        // Remove non-digit characters
+        let value = this.value.replace(/\D/g, "");
+
+        // Format with dots
+        if (value !== "") {
+          value = parseInt(value, 10).toLocaleString("id-ID");
+        }
+
+        this.value = value;
+      });
+    </script>
+  </body>
+</html>
