@@ -162,25 +162,35 @@ export default function DashboardPage() {
   const saldo = totalSaldo(me.tabungan);
   const jumlahAktif = me.tabungan.filter((t) => t.status === "AKTIF").length;
 
-  const navItem = (icon: string, label: string, active = false) => (
+  const navItem = (icon: string, label: string, href?: string, active = false) => (
     <li>
-      <button
-        type="button"
-        title={active ? undefined : "Segera hadir"}
-        className={`flex w-full items-center gap-md rounded-lg px-md py-sm transition-all ${
-          active
-            ? "bg-primary text-on-primary hover:bg-primary-container"
-            : "text-on-surface-variant hover:bg-surface-container-highest"
-        }`}
-      >
-        <span
-          className="material-symbols-outlined"
-          style={active ? { fontVariationSettings: "'FILL' 1" } : undefined}
+      {href ? (
+        <Link
+          href={href}
+          className={`flex w-full items-center gap-md rounded-lg px-md py-sm transition-all ${
+            active
+              ? "bg-primary text-on-primary hover:bg-primary-container"
+              : "text-on-surface-variant hover:bg-surface-container-highest"
+          }`}
         >
-          {icon}
-        </span>
-        <span className="font-label-md text-label-md">{label}</span>
-      </button>
+          <span
+            className="material-symbols-outlined"
+            style={active ? { fontVariationSettings: "'FILL' 1" } : undefined}
+          >
+            {icon}
+          </span>
+          <span className="font-label-md text-label-md">{label}</span>
+        </Link>
+      ) : (
+        <button
+          type="button"
+          title="Segera hadir"
+          className="flex w-full items-center gap-md rounded-lg px-md py-sm transition-all text-on-surface-variant hover:bg-surface-container-highest"
+        >
+          <span className="material-symbols-outlined">{icon}</span>
+          <span className="font-label-md text-label-md">{label}</span>
+        </button>
+      )}
     </li>
   );
 
@@ -201,18 +211,17 @@ export default function DashboardPage() {
           </div>
         </div>
         <ul className="flex flex-col gap-sm flex-1">
-          {navItem("home", "Beranda", true)}
-          {navItem("account_balance_wallet", "Rekening")}
-          {navItem("swap_horiz", "Transaksi")}
-          {navItem("description", "Laporan")}
+          {navItem("home", "Beranda", "/dashboard", true)}
+          {navItem("account_balance_wallet", "Rekening", "/rekening")}
+          {navItem("swap_horiz", "Transaksi", "/transaksi/setor")}
+          {navItem("description", "Laporan", "/laporan")}
         </ul>
-        <button
-          type="button"
-          title="Segera hadir"
-          className="bg-secondary-container text-on-secondary-container font-label-md text-label-md py-sm rounded-lg w-full mb-lg hover:opacity-90 transition-opacity"
+        <Link
+          href="/transaksi/setor"
+          className="bg-secondary-container text-on-secondary-container font-label-md text-label-md py-sm rounded-lg w-full mb-lg hover:opacity-90 transition-opacity text-center"
         >
           Setor Tunai
-        </button>
+        </Link>
         <ul className="flex flex-col gap-sm border-t border-outline-variant pt-md">
           {navItem("settings", "Pengaturan")}
           {navItem("help", "Bantuan")}
@@ -280,22 +289,20 @@ export default function DashboardPage() {
                   </p>
                 </div>
                 <div className="z-10 flex gap-sm mt-lg">
-                  <button
-                    type="button"
-                    title="Segera hadir"
+                  <Link
+                    href="/transaksi/setor"
                     className="bg-secondary-container text-on-secondary-container font-label-md text-label-md px-md py-sm rounded-lg hover:opacity-90 flex items-center gap-xs"
                   >
                     <span className="material-symbols-outlined text-[18px]">add</span>
                     Setor
-                  </button>
-                  <button
-                    type="button"
-                    title="Segera hadir"
+                  </Link>
+                  <Link
+                    href="/transaksi/tarik"
                     className="bg-surface/20 text-on-primary font-label-md text-label-md px-md py-sm rounded-lg hover:bg-surface/30 flex items-center gap-xs"
                   >
                     <span className="material-symbols-outlined text-[18px]">sync_alt</span>
-                    Transfer
-                  </button>
+                    Tarik
+                  </Link>
                 </div>
               </div>
 
@@ -304,9 +311,9 @@ export default function DashboardPage() {
                 <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary-container" />
                 <div className="flex justify-between items-center mb-md ml-sm">
                   <h3 className="font-headline-md text-headline-md text-on-surface">Daftar Rekening</h3>
-                  <button type="button" className="text-primary font-label-md text-label-md hover:underline">
+                  <Link href="/rekening" className="text-primary font-label-md text-label-md hover:underline">
                     Lihat Semua
-                  </button>
+                  </Link>
                 </div>
                 <div className="flex flex-col gap-sm ml-sm">
                   {me.tabungan.length === 0 && (
@@ -342,27 +349,24 @@ export default function DashboardPage() {
                           {formatRupiah(t.saldo)}
                         </p>
                         <div className="flex gap-xs sm:mt-xs sm:justify-end">
-                          <button
-                            type="button"
-                            title="Segera hadir"
+                          <Link
+                            href={`/transaksi/setor?rekening=${t.id}`}
                             className="text-primary font-label-sm text-label-sm px-sm py-xs border border-outline-variant rounded hover:bg-surface-container"
                           >
                             Setor
-                          </button>
-                          <button
-                            type="button"
-                            title="Segera hadir"
+                          </Link>
+                          <Link
+                            href={`/transaksi/tarik?rekening=${t.id}`}
                             className="text-on-surface-variant font-label-sm text-label-sm px-sm py-xs border border-outline-variant rounded hover:bg-surface-container"
                           >
                             Tarik
-                          </button>
-                          <button
-                            type="button"
-                            title="Segera hadir"
+                          </Link>
+                          <Link
+                            href={`/rekening/${t.id}/mutasi`}
                             className="text-on-surface-variant font-label-sm text-label-sm px-sm py-xs border border-outline-variant rounded hover:bg-surface-container"
                           >
                             Mutasi
-                          </button>
+                          </Link>
                         </div>
                       </div>
                     </div>
