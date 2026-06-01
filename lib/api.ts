@@ -125,7 +125,7 @@ export function clearSession(): void {
 }
 
 /** fetch ber-Authorization. Otomatis melempar UnauthorizedError pada 401. */
-async function authFetch(path: string, init: RequestInit = {}): Promise<Response> {
+export async function authFetch(path: string, init: RequestInit = {}): Promise<Response> {
     const token = getToken();
     const res = await fetch(`${API_URL}${path}`, {
         ...init,
